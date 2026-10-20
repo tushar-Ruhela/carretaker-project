@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "role": "family",
+      "name": "The Smith Family"
+    },
+    {
+      "id": 2,
+      "role": "family",
+      "name": "The Johnson Family"
+    },
+    {
+      "id": 3,
+      "role": "caregiver",
+      "name": "Alice Smith",
+      "specialty": "Memory Care",
+      "hourlyRate": 35,
+      "backgroundVerified": true
+    },
+    {
+      "id": 4,
+      "role": "caregiver",
+      "name": "Bob Johnson",
+      "specialty": "Certified Nursing Assistant (CNA)",
+      "hourlyRate": 30,
+      "backgroundVerified": true
+    },
+    {
+      "id": 5,
+      "role": "caregiver",
+      "name": "Carol Williams",
+      "specialty": "Dementia Specialist",
+      "hourlyRate": 40,
+      "backgroundVerified": false
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "familyId": 2,
+      "caregiverId": 3,
+      "date": "2026-09-30",
+      "status": "Confirmed"
+    }
+  ],
+  "timesheets": []
+}

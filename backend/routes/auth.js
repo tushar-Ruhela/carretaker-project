@@ -12,7 +12,14 @@ router.post('/register', async (req, res) => {
   try {
     // Sign up via Supabase Auth
     const { data: authData, error: authError } = await supabase.auth.signUp({ email, password });
-    if (authError) return res.status(400).json({ error: authError.message });
+    if (authError) {
+      if (authError.message === 'fetch failed' || authError.message.includes('fetch')) {
+        return res.status(503).json({
+          error: 'Supabase database is currently unreachable. Your Supabase project may be paused — please unpause it in supabase.com, or click one of the Quick Demo buttons below to explore the dashboard.'
+        });
+      }
+      return res.status(400).json({ error: authError.message });
+    }
 
     const userId = authData.user?.id;
     if (!userId) return res.status(500).json({ error: 'User creation failed' });
@@ -38,7 +45,14 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-    if (error) return res.status(401).json({ error: error.message });
+    if (error) {
+      if (error.message === 'fetch failed' || error.message.includes('fetch')) {
+        return res.status(503).json({
+          error: 'Supabase database is currently unreachable. Your Supabase project may be paused — please unpause it in supabase.com, or click one of the Quick Demo buttons below to explore the dashboard.'
+        });
+      }
+      return res.status(401).json({ error: error.message });
+    }
 
     // Fetch profile
     const { data: profile } = await supabase

@@ -26,7 +26,7 @@ const SUPPORTED_LANGUAGES = {
 function getModel() {
   if (!process.env.GEMINI_API_KEY) return null;
   return new ChatGoogleGenerativeAI({
-    model: 'gemini-1.5-pro',
+    model: 'gemini-3-flash-preview',
     apiKey: process.env.GEMINI_API_KEY,
     temperature: 0.7,
   });

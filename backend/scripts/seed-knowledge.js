@@ -80,7 +80,7 @@ async function seed() {
 
     if (genAI) {
       try {
-        const model = genAI.getGenerativeModel({ model: 'embedding-001' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-embedding-001' });
         const result = await model.embedContent(`${doc.title}: ${doc.content}`);
         embedding = result.embedding.values;
         console.log(`Generated 768-dim embedding for: ${doc.title}`);

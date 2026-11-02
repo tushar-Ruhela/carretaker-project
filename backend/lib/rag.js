@@ -13,7 +13,7 @@ async function embedText(text) {
     // Return empty 768-dim mock vector if key not set
     return new Array(768).fill(0);
   }
-  const model = genAI.getGenerativeModel({ model: 'embedding-001' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-embedding-001' });
   const result = await model.embedContent(text);
   return result.embedding.values;
 }
@@ -61,7 +61,7 @@ async function generateCounsellorResponse(userMessage, chatHistory = [], session
     return 'Thank you for reaching out to CareConnect. Our team is available 24/7 to support NRI families with verified eldercare in India. How can we assist you today?';
   }
 
-  const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-3-flash-preview' });
   const context = await retrieveContext(userMessage);
   const contextText = context.length > 0
     ? context.map(d => `[${d.category}] ${d.title}:\n${d.content}`).join('\n\n')
